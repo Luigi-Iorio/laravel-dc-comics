@@ -16,5 +16,13 @@ main {
         &:hover {
             background-color: rgb(10, 89, 186);
         }
+
+        &:last-child {
+            background-color: rgb(10, 186, 154);
+
+            &:hover {
+                background-color: rgb(10, 89, 186);
+            }
+        }
     }
 }
