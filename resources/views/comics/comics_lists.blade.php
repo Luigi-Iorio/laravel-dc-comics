@@ -14,13 +14,11 @@
         @foreach ($comics as $comic)
             <li>{{ $comic['title'] }}</li>
             <li>{{ $comic['description'] }}</li>
-            <img src="{{ $comic['thumb'] }}" alt="{{ $comic['title'] }}">
-            <li>{{ $comic['price'] }}</li>
-            <li>{{ $comic['series'] }}</li>
-            <li>{{ $comic['sale_date'] }}</li>
-            <li>{{ $comic['type'] }}</li>
-
-            <hr>
+            <li><img src="{{ $comic['thumb'] }}" alt="{{ $comic['title'] }}"></li>
+            <li><a href="{{ route('comics.show', $comic->id) }}">Dettaglio</a></li>
+            <li>
+                <hr>
+            </li>
         @endforeach
     </ul>
 </body>
