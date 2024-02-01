@@ -1,26 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layout.main')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Comics</title>
-</head>
-
-<body>
-    <h1>Lista Fumetti</h1>
-    <ul>
-        @foreach ($comics as $comic)
-            <li>{{ $comic['title'] }}</li>
-            <li>{{ $comic['description'] }}</li>
-            <li><img src="{{ $comic['thumb'] }}" alt="{{ $comic['title'] }}"></li>
-            <li><a href="{{ route('comics.show', $comic->id) }}">Dettaglio</a></li>
-            <li>
-                <hr>
-            </li>
-        @endforeach
-    </ul>
-</body>
-
-</html>
+@section('main')
+    <main>
+        <div class="comics-list">
+            {{-- titolo --}}
+            <h2>Lista Fumetti</h2>
+            {{-- /titolo --}}
+            {{-- lista fumetti --}}
+            <ul>
+                @foreach ($comics as $comic)
+                    {{-- card --}}
+                    <li class="card">
+                        {{-- img --}}
+                        <div class="cover">
+                            <img src="{{ $comic['thumb'] }}" alt="{{ $comic['title'] }}">
+                        </div>
+                        {{-- /img --}}
+                        {{-- info --}}
+                        <div class="info">
+                            <h3>{{ $comic['title'] }}</h3>
+                            <p>{{ $comic['description'] }}</p>
+                            <a href="{{ route('comics.show', $comic->id) }}">Dettaglio</a>
+                        </div>
+                        {{-- /info --}}
+                    </li>
+                    {{-- /card --}}
+                @endforeach
+            </ul>
+            {{-- /lista fumetti --}}
+        </div>
+    </main>
+@endsection
