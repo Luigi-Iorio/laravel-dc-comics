@@ -1,4 +1,11 @@
+// importazione
+@use "/resources/scss/partials/reset.scss";
+@use "/resources/scss/partials/header.scss";
+@use "/resources/scss/partials/footer.scss";
+@use "/resources/scss/partials/home-main.scss";
+
 // body
 body {
     background-color: rgb(2, 18, 38);
+    color: white;
 }
