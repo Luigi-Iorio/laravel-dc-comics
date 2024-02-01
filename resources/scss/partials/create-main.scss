@@ -1,0 +1,42 @@
+main {
+    .create {
+        padding: 30px;
+        max-width: 992px;
+        margin: 0 auto;
+
+        form {
+            margin-top: 50px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+
+            .cont {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+
+                input {
+                    border: 1px solid white;
+                    height: 40px;
+                    border-radius: 15px;
+                    padding: 0 10px;
+                }
+            }
+
+            button {
+                margin-top: auto;
+                padding: 20px 0;
+                text-align: center;
+                background-color: rgb(13, 72, 144);
+                color: white;
+                border: 1px solid white;
+                border-radius: 20px;
+                cursor: pointer;
+
+                &:hover {
+                    background-color: rgb(17, 93, 185);
+                }
+            }
+        }
+    }
+}
