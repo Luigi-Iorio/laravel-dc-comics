@@ -52,6 +52,21 @@ main {
                     }
                 }
             }
+
+            button {
+                width: 100%;
+                margin: 0 auto;
+                padding: 20px 0;
+                text-align: center;
+                background-color: rgb(222, 11, 11);
+                color: white;
+                border: none;
+                cursor: pointer;
+
+                &:hover {
+                    background-color: rgb(136, 6, 6);
+                }
+            }
         }
     }
 }

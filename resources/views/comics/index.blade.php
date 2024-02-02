@@ -23,6 +23,13 @@
                             <a href="{{ route('comics.show', $comic->id) }}">Dettaglio</a>
                         </div>
                         {{-- /info --}}
+                        {{-- delete --}}
+                        <form action="{{ route('comics.destroy', $comic->id) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button>Cancella</button>
+                        </form>
+                        {{-- /delete --}}
                     </li>
                     {{-- /card --}}
                 @endforeach
