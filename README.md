@@ -59,3 +59,26 @@ public function store(Request $request)
     return redirect()->route('comics.show', $newComic->id);
 }
 ```
+
+\- **Cancellare fumetto nel db**: con `destroy()` viene eliminato dal db il fumetto selezionato.
+
+_ComicController.php_
+
+```php
+public function destroy(Comic $comic)
+{
+    $comic->delete();
+
+    return redirect()->route('comics.index');
+}
+```
+
+_index.blade.php_
+
+```php
+<form action="{{ route('comics.destroy', $comic->id) }}" method="POST">
+    @csrf
+    @method('DELETE')
+    <button>Cancella</button>
+</form>
+```
