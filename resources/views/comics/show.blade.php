@@ -11,6 +11,7 @@
                 <li>Data: {{ $comic['sale_date'] }}</li>
                 <li>Tipo: {{ $comic['type'] }}</li>
             </ul>
+            <a href="{{ route('comics.edit', $comic->id) }}">Modifica dati fumetto</a>
         </div>
     </main>
 @endsection
