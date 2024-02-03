@@ -23,13 +23,22 @@
                             <a href="{{ route('comics.show', $comic->id) }}">Dettaglio</a>
                         </div>
                         {{-- /info --}}
-                        {{-- delete --}}
-                        <form action="{{ route('comics.destroy', $comic->id) }}" method="POST">
-                            @csrf
-                            @method('DELETE')
-                            <button>Cancella</button>
-                        </form>
-                        {{-- /delete --}}
+                        {{-- bottone --}}
+                        <button>Cancella</button>
+                        {{-- bottone --}}
+                        {{-- modale --}}
+                        <div class="modale opacity-0">
+                            <h3>Vuoi cancellare definitivamente il fumetto: <span>{{ $comic['title'] }}</span>?</h3>
+                            <div class="chiudi">Chiudi</div>
+                            {{-- elimina --}}
+                            <form action="{{ route('comics.destroy', $comic->id) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <input type="submit" value="Cancella Definitivamente">
+                            </form>
+                            {{-- elimina --}}
+                        </div>
+                        {{-- modale --}}
                     </li>
                     {{-- /card --}}
                 @endforeach
