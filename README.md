@@ -108,3 +108,36 @@ buttons.forEach((button, index) => {
     });
 });
 ```
+
+\- **Validazione Form**: è stata utilizzata la request personalizzata `ComicRequest` per validare i dati ricevuti in input in fase di creazione e modifica, gli errori invece sono risposte personalizzate in italiano.
+
+_ComicRequest.php_
+
+```php
+public function rules(): array
+{
+    return [
+        'title' => 'required|max:60',
+        'description' => 'max:500',
+        'thumb' => 'url',
+        'price' => 'numeric',
+        'series' => 'max:60',
+        'sale_date' => 'date',
+        'type' => 'max:60'
+    ];
+}
+
+public function messages()
+{
+    return [
+        'title.required' => 'Il campo titolo è obbligatorio',
+        'title.max' => 'Il campo titolo non deve superare i 60 caratteri',
+        'description.max' => 'Il campo descrizione non deve superare i 500 caratteri',
+        'thumb.url' => 'Il campo url immagine deve contenere un URL corretto',
+        'price.numeric' => 'Il campo prezzo deve essere numerico',
+        'series.max' => 'Il campo serie non deve superare i 60 caratteri',
+        'sale_date.date' => 'Il campo data deve essere una data valida',
+        'type.max' => 'Il campo tipo non deve superare i 60 caratteri'
+    ];
+}
+```
