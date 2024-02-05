@@ -3,9 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ComicRequest;
 use App\Models\Comic;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
 
 class ComicController extends Controller
 {
@@ -30,9 +29,9 @@ class ComicController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(ComicRequest $request)
     {
-        $comic = $this->validationCreate($request->all());
+        $comic =  $request->validated();
 
         $newComic = new Comic();
         $newComic->title = $comic['title'];
@@ -46,38 +45,6 @@ class ComicController extends Controller
         $newComic->save();
 
         return redirect()->route('comics.show', $newComic->id);
-    }
-
-    /**
-     * Validation Create
-     */
-
-    private function validationCreate($comic)
-    {
-        $validator = Validator::make(
-            $comic,
-            [
-                'title' => 'required|max:60',
-                'description' => 'max:500',
-                'thumb' => 'url',
-                'price' => 'numeric',
-                'series' => 'max:60',
-                'sale_date' => 'date',
-                'type' => 'max:60',
-            ],
-            [
-                'title.required' => 'Il campo titolo è obbligatorio',
-                'title.max' => 'Il campo titolo non deve superare i 60 caratteri',
-                'description.max' => 'Il campo descrizione non deve superare i 500 caratteri',
-                'thumb.url' => 'Il campo url immagine deve contenere un URL corretto',
-                'price.numeric' => 'Il campo prezzo deve essere numerico',
-                'series.max' => 'Il campo serie non deve superare i 60 caratteri',
-                'sale_date.date' => 'Il campo data deve essere una data valida',
-                'type.max' => 'Il campo tipo non deve superare i 60 caratteri',
-            ]
-        )->validate();
-
-        return $validator;
     }
 
     /**
@@ -99,45 +66,13 @@ class ComicController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Comic $comic)
+    public function update(ComicRequest $request, Comic $comic)
     {
-        $edit = $this->validationUpdate($request->all());
+        $edit = $request->validated();
 
         $comic->update($edit);
 
         return redirect()->route('home');
-    }
-
-    /**
-     * Validation Update
-     */
-
-    private function validationUpdate($edit)
-    {
-        $validator = Validator::make(
-            $edit,
-            [
-                'title' => 'required|max:60',
-                'description' => 'max:500',
-                'thumb' => 'url',
-                'price' => 'numeric',
-                'series' => 'max:60',
-                'sale_date' => 'date',
-                'type' => 'max:60',
-            ],
-            [
-                'title.required' => 'Il campo titolo è obbligatorio',
-                'title.max' => 'Il campo titolo non deve superare i 60 caratteri',
-                'description.max' => 'Il campo descrizione non deve superare i 500 caratteri',
-                'thumb.url' => 'Il campo url immagine deve contenere un URL corretto',
-                'price.numeric' => 'Il campo prezzo deve essere numerico',
-                'series.max' => 'Il campo serie non deve superare i 60 caratteri',
-                'sale_date.date' => 'Il campo data deve essere una data valida',
-                'type.max' => 'Il campo tipo non deve superare i 60 caratteri',
-            ]
-        )->validate();
-
-        return $validator;
     }
 
     /**
