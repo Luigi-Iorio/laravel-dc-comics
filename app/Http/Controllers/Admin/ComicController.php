@@ -52,17 +52,20 @@ class ComicController extends Controller
      * Validation Create
      */
 
-    private function validationCrate($comic)
+    private function validationCreate($comic)
     {
-        $validator = Validator::make($comic, [
-            'title' => 'required|max:60',
-            'description' => 'max:500',
-            'thumb' => 'url',
-            'price' => 'numeric',
-            'series' => 'max:60',
-            'sale_date' => 'date',
-            'type' => 'max:60',
-        ])->validate();
+        $validator = Validator::make(
+            $comic,
+            [
+                'title' => 'required|max:60',
+                'description' => 'max:500',
+                'thumb' => 'url',
+                'price' => 'numeric',
+                'series' => 'max:60',
+                'sale_date' => 'date',
+                'type' => 'max:60',
+            ]
+        )->validate();
 
         return $validator;
     }
