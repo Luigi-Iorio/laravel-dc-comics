@@ -16,6 +16,14 @@ main {
                 flex-direction: column;
                 gap: 10px;
 
+                .error {
+                    background-color: red;
+                    color: white;
+                    border: 1px solid white;
+                    border-radius: 15px;
+                    padding: 15px 10px;
+                }
+
                 input {
                     border: 1px solid white;
                     height: 40px;

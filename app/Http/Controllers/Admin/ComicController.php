@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Comic;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class ComicController extends Controller
 {
@@ -31,7 +32,7 @@ class ComicController extends Controller
      */
     public function store(Request $request)
     {
-        $comic = $request->all();
+        $comic = $this->validationCreate($request->all());
 
         $newComic = new Comic();
         $newComic->title = $comic['title'];
@@ -45,6 +46,25 @@ class ComicController extends Controller
         $newComic->save();
 
         return redirect()->route('comics.show', $newComic->id);
+    }
+
+    /**
+     * Validation Create
+     */
+
+    private function validationCrate($comic)
+    {
+        $validator = Validator::make($comic, [
+            'title' => 'required|max:60',
+            'description' => 'max:500',
+            'thumb' => 'url',
+            'price' => 'numeric',
+            'series' => 'max:60',
+            'sale_date' => 'date',
+            'type' => 'max:60',
+        ])->validate();
+
+        return $validator;
     }
 
     /**
@@ -68,11 +88,30 @@ class ComicController extends Controller
      */
     public function update(Request $request, Comic $comic)
     {
-        $edit = $request->all();
+        $edit = $this->validationUpdate($request->all());
 
         $comic->update($edit);
 
         return redirect()->route('home');
+    }
+
+    /**
+     * Validation Update
+     */
+
+    private function validationUpdate($edit)
+    {
+        $validator = Validator::make($edit, [
+            'title' => 'required|max:60',
+            'description' => 'max:500',
+            'thumb' => 'url',
+            'price' => 'numeric',
+            'series' => 'max:60',
+            'sale_date' => 'date',
+            'type' => 'max:60',
+        ])->validate();
+
+        return $validator;
     }
 
     /**
