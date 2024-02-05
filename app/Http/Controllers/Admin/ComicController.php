@@ -64,6 +64,16 @@ class ComicController extends Controller
                 'series' => 'max:60',
                 'sale_date' => 'date',
                 'type' => 'max:60',
+            ],
+            [
+                'title.required' => 'Il campo titolo è obbligatorio',
+                'title.max' => 'Il campo titolo non deve superare i 60 caratteri',
+                'description.max' => 'Il campo descrizione non deve superare i 500 caratteri',
+                'thumb.url' => 'Il campo url immagine deve contenere un URL corretto',
+                'price.numeric' => 'Il campo prezzo deve essere numerico',
+                'series.max' => 'Il campo serie non deve superare i 60 caratteri',
+                'sale_date.date' => 'Il campo data deve essere una data valida',
+                'type.max' => 'Il campo tipo non deve superare i 60 caratteri',
             ]
         )->validate();
 
@@ -104,15 +114,28 @@ class ComicController extends Controller
 
     private function validationUpdate($edit)
     {
-        $validator = Validator::make($edit, [
-            'title' => 'required|max:60',
-            'description' => 'max:500',
-            'thumb' => 'url',
-            'price' => 'numeric',
-            'series' => 'max:60',
-            'sale_date' => 'date',
-            'type' => 'max:60',
-        ])->validate();
+        $validator = Validator::make(
+            $edit,
+            [
+                'title' => 'required|max:60',
+                'description' => 'max:500',
+                'thumb' => 'url',
+                'price' => 'numeric',
+                'series' => 'max:60',
+                'sale_date' => 'date',
+                'type' => 'max:60',
+            ],
+            [
+                'title.required' => 'Il campo titolo è obbligatorio',
+                'title.max' => 'Il campo titolo non deve superare i 60 caratteri',
+                'description.max' => 'Il campo descrizione non deve superare i 500 caratteri',
+                'thumb.url' => 'Il campo url immagine deve contenere un URL corretto',
+                'price.numeric' => 'Il campo prezzo deve essere numerico',
+                'series.max' => 'Il campo serie non deve superare i 60 caratteri',
+                'sale_date.date' => 'Il campo data deve essere una data valida',
+                'type.max' => 'Il campo tipo non deve superare i 60 caratteri',
+            ]
+        )->validate();
 
         return $validator;
     }
